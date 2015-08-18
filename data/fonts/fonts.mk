@@ -15,14 +15,10 @@
 # Warning: this is actually a product definition, to be inherited from
 
 PRODUCT_COPY_FILES := \
-    frameworks/base/data/fonts/system_fonts.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/system_fonts.xml 
-
-ifeq ($(MULTI_LANG_ENGINE),REVERIE)
-PRODUCT_COPY_FILES += \
-    vendor/qcom/proprietary/qrdplus/globalization/engine/fallback_fonts-Rev.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/fallback_fonts.xml
-else
-PRODUCT_COPY_FILES += \
-    frameworks/base/data/fonts/fallback_fonts.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/fallback_fonts.xml
+    frameworks/base/data/fonts/system_fonts.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/system_fonts.xml
+ifneq ($(MULTI_LANG_ENGINE),REVERIE)
+    frameworks/base/data/fonts/fallback_fonts.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/fallback_fonts.xml \
+    frameworks/base/data/fonts/fonts.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/fonts.xml
 endif
 
 PRODUCT_PACKAGES := \
@@ -31,48 +27,38 @@ PRODUCT_PACKAGES := \
     Roboto-Bold.ttf \
     Roboto-Italic.ttf \
     Roboto-BoldItalic.ttf \
+    Roboto-Black.ttf \
+    Roboto-BlackItalic.ttf \
     Roboto-Light.ttf \
     Roboto-LightItalic.ttf \
+    Roboto-Medium.ttf \
+    Roboto-MediumItalic.ttf \
     Roboto-Thin.ttf \
     Roboto-ThinItalic.ttf \
     RobotoCondensed-Regular.ttf \
     RobotoCondensed-Bold.ttf \
     RobotoCondensed-Italic.ttf \
     RobotoCondensed-BoldItalic.ttf \
-    DroidNaskh-Regular.ttf \
-    DroidNaskh-Regular-SystemUI.ttf \
-    DroidSansHebrew-Regular.ttf \
-    DroidSansHebrew-Bold.ttf \
-    DroidSansThai.ttf \
-    DroidSerif-Regular.ttf \
-    DroidSerif-Bold.ttf \
-    DroidSerif-Italic.ttf \
-    DroidSerif-BoldItalic.ttf \
+    RobotoCondensed-Light.ttf \
+    RobotoCondensed-LightItalic.ttf \
     DroidSansMono.ttf \
-    DroidSansArmenian.ttf \
-    DroidSansGeorgian.ttf \
-    AndroidEmoji.ttf \
     Clockopia.ttf \
     AndroidClock.ttf \
     AndroidClock_Highlight.ttf \
-    AndroidClock_Solid.ttf \
-
-
+    AndroidClock_Solid.ttf
 
 ifeq ($(MULTI_LANG_ENGINE),REVERIE)
 PRODUCT_PACKAGES += \
+    fallback_fonts.xml \
+    fonts.xml \
     DroidSansHindi.ttf \
     DroidSansTamil.ttf \
     DroidSansTelugu.ttf \
+    DroidSansGujarati.ttf \
     DroidSansPunjabi.ttf \
     DroidSansKannada.ttf \
     DroidSansBengali.ttf \
-    DroidSansGujarati.ttf \
-    DroidSansMalayalam.ttf \
-    DroidSansOdia.ttf 
+    DroidSansOdia.ttf \
+    DroidSansMyanmar.ttf
 
-else
-PRODUCT_PACKAGES += \
-    DroidSansDevanagari-Regular.ttf 
 endif
-
